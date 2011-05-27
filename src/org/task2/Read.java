@@ -9,7 +9,6 @@ import se.k3.goransson.andreas.essemmesslib.EssemmessLoginEvent;
 import se.k3.goransson.andreas.essemmesslib.EssemmessPublishEvent;
 import se.k3.goransson.andreas.essemmesslib.EssemmessReadEvent;
 import se.k3.goransson.andreas.essemmesslib.Post;
-import se.mah.k3.grimberg.essemmess2.R;
 import android.app.Activity;
 import android.app.ListActivity;
 import android.os.Bundle;
@@ -20,7 +19,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 
-public class read extends Activity implements EssemmessListener, OnClickListener {
+public class Read extends Activity implements EssemmessListener, OnClickListener {
 	
 	ListView listview;
 	Essemmess mServer = EssemmessHelper.getServer(this);
@@ -28,10 +27,10 @@ public class read extends Activity implements EssemmessListener, OnClickListener
 	ArrayAdapter<String> adapter;
 
 
-    /** Called when the activity is first created. */
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+   
+    protected void onCreate(Bundle savedInstanceState) {
+        
+    	super.onCreate(savedInstanceState);
         setContentView(R.layout.read);
         
         Posts = new ArrayList<String>();
@@ -46,15 +45,18 @@ public class read extends Activity implements EssemmessListener, OnClickListener
 
 
         
-        //datatyp namn;
         Button updatebutton = (Button) findViewById(R.id.update);
-        updatebutton.setOnClickListener(new OnClickListener(){
-
-			@Override
+        updatebutton.setOnClickListener(this);
+    }
+        
 			public void onClick(View v) {
+				
+				switch(v.getId()){
+				case R.id.button1:
+				
 				// TODO Auto-generated method stub
 				mServer.read("");
-			}});
+			}
 
 				
 			}
@@ -87,9 +89,5 @@ public class read extends Activity implements EssemmessListener, OnClickListener
 				
 			}
 
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				
-			};
+			
 }
